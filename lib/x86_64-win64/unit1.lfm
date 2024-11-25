@@ -1,0 +1,124 @@
+object Form1: TForm1
+  Left = 630
+  Height = 1051
+  Top = 148
+  Width = 1596
+  Caption = 'Test'
+  ClientHeight = 1051
+  ClientWidth = 1596
+  Font.CharSet = RUSSIAN_CHARSET
+  Font.Height = -21
+  Font.Name = 'Segoe UI Semibold'
+  Font.Pitch = fpVariable
+  Font.Quality = fqDraft
+  Font.Style = [fsBold]
+  LCLVersion = '3.6.0.0'
+  object RadioGroup1: TRadioGroup
+    Left = 111
+    Height = 712
+    Top = 55
+    Width = 891
+    AutoFill = True
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    TabOrder = 0
+    Visible = False
+  end
+  object CheckGroup1: TCheckGroup
+    Left = 111
+    Height = 232
+    Top = 55
+    Width = 891
+    AutoFill = True
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.TopBottomSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    Enabled = False
+    OnClick = CheckGroup1Click
+    TabOrder = 1
+    Visible = False
+  end
+  object Label1: TLabel
+    Left = 108
+    Height = 1
+    Top = 11
+    Width = 1
+  end
+  object btn_prev: TButton
+    Left = 111
+    Height = 102
+    Top = 768
+    Width = 281
+    Caption = 'Previous'
+    TabOrder = 2
+    Visible = False
+    OnClick = btn_prevClick
+  end
+  object btn_next: TButton
+    Left = 721
+    Height = 102
+    Top = 768
+    Width = 281
+    Caption = 'Next'
+    TabOrder = 3
+    Visible = False
+    OnClick = btn_prevClick
+  end
+  object Btn_result: TButton
+    Left = 721
+    Height = 102
+    Top = 768
+    Width = 281
+    Caption = 'Result'
+    TabOrder = 4
+    Visible = False
+    OnClick = btn_prevClick
+  end
+  object btn_start: TButton
+    Left = 304
+    Height = 225
+    Top = 224
+    Width = 495
+    Caption = 'START'
+    TabOrder = 5
+    OnClick = btn_startClick
+  end
+  object Image1: TImage
+    Left = 1100
+    Height = 431
+    Top = 147
+    Width = 547
+    Visible = False
+  end
+  object label_correct: TLabel
+    Left = 397
+    Height = 1
+    Top = 778
+    Width = 1
+  end
+  object Edit1: TEdit
+    Left = 390
+    Height = 38
+    Top = 914
+    Width = 334
+    TabOrder = 6
+    Text = 'input.txt'
+  end
+  object Label2: TLabel
+    Left = 499
+    Height = 30
+    Top = 958
+    Width = 74
+    Caption = 'Text file'
+  end
+end
