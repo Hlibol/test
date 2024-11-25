@@ -72,12 +72,35 @@ begin
      readln(fin,s);
      mass[i].question:=S;
      readln(fin,s);
-     mass[i].question:=S;
+     mass[i].typ:=S;
      readln(fin,S);
      val(s,mass[i].amount);
+     for j:=0 to mass[i].amount-1 do
+     begin
+        readln(fin,S);
+        mass[i].answear[j]:=S;
+     end;
+     for j:=0 to mass[i].amount-1 do
+     begin
+        readln(fin,S);
+        if s='1' then
+           mass[i].correct[j]:=true
+        else if s='0' then
+           mass[i].correct[j]:=false;
+     end;
+     inc(i);
    end;
    N:=i;
-
+   edit1.Visible:=false;
+   btn_start.Visible:=false;
+   label2.Visible:=false;
+   i:=1;
+   label1.caption:=mass[i].question;
+   btn_next.visible:=true;
+   if mass[i].typ='check' then
+       checkgroup1.visible:=true;
+   if mass[i].typ='radio' then
+       radiogroup1.visible:=true;
 end;
 
 end.
