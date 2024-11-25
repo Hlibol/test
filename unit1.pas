@@ -52,6 +52,24 @@ implementation
 
 { TForm1 }
 
+procedure fillcheck(checkgroup1:TCheckGroup);
+begin
+  CheckGroup1.items.clear;
+  for j:=0 to mass[i].amount-1 do
+  begin
+    CheckGroup1.items.add(mass[i].answear[j]);
+  end;
+end;
+
+procedure fillradio(radiogroup1:TRadioGroup);
+begin
+  radioGroup1.items.clear;
+  for j:=0 to mass[i].amount-1 do
+  begin
+    radioGroup1.items.add(mass[i].answear[j]);
+  end;
+end;
+
 procedure TForm1.CheckGroup1Click(Sender: TObject);
 begin
 
@@ -98,9 +116,15 @@ begin
    label1.caption:=mass[i].question;
    btn_next.visible:=true;
    if mass[i].typ='check' then
+   begin
        checkgroup1.visible:=true;
+       fillcheck(checkgroup1);
+   end;
    if mass[i].typ='radio' then
+   begin
        radiogroup1.visible:=true;
+       fillradio(radiogroup1);
+   end;
 end;
 
 end.

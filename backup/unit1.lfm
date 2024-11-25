@@ -26,7 +26,6 @@ object Form1: TForm1
     ChildSizing.ShrinkVertical = crsScaleChilds
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 1
-    Enabled = False
     TabOrder = 0
     Visible = False
   end
@@ -44,18 +43,9 @@ object Form1: TForm1
     ChildSizing.ShrinkVertical = crsScaleChilds
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 1
-    ClientHeight = 374
-    ClientWidth = 887
-    Enabled = False
-    Items.Strings = (
-      '123'
-    )
     OnClick = CheckGroup1Click
     TabOrder = 1
     Visible = False
-    Data = {
-      0100000002
-    }
   end
   object Label1: TLabel
     Left = 108
