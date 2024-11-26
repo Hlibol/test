@@ -91,26 +91,47 @@ begin
   end;
 end;
 
-procedure checkanswear(checkgroup1:Tchecgroup);
+function radioanswear(radiogroup1:Tradiogroup):boolean;
 begin
+     radioanswear:=false;
+     for j:=0 to mass[i].amount-1 do
+        if mass[i].usanswear[j]=mass[i].correct[j] then
+           radioanswear:=true;
+end;
 
+function checkanswear(checkgroup1:Tcheckgroup):boolean;
+var
+   correctam,testam,useram:longint;
+begin
+     useram:=0;
+     testam:=0;
+     checkanswear:=false;
+     correctam:=0;
+      for j:=0 to mass[i].amount-1 do
+      begin
+          if mass[i].usanswear[j] = mass[i].correct[j]
+          then inc(correctam);
+          if mass[i].correct[j]
+          then inc(testam);
+          if mass[i].usanswear[j]
+          then inc(useram);
+      end;
+      if (correctam=testam) and (useram=testam) then
+         checkanswear:=true;
 end;
 
 function calculateanswear(radiogroup1:TRadioGroup;checkgroup1:TCheckGroup):longint;
+var sum:longint;
 begin
+     sum:=0;
    for i:=1 to N do
    begin
-     for j:=0 to mass[i].amount do
-     begin
         if mass[i].typ='check' then
-        begin
-
-        end
+            if checkanswear(checkgroup1) then inc(sum)
         else if mass[i].typ='radio' then
-        begin
-        end
+             if radioanswear(radiogroup1) then inc(sum);
      end;
-   end;
+   calculateanswear:=sum;
 end;
 
 procedure TForm1.CheckGroup1Click(Sender: TObject);
@@ -153,9 +174,9 @@ begin
       rareadusanswear(radiogroup1);
    if mass[i].typ='check' then
       chreadusanswear(checkgroup1);
-  s:=calculateanswear(radiogroup1,checkgroup1);
+  s:=inttostr(calculateanswear(radiogroup1,checkgroup1));
   i:=N;
-  labe3.caption:='Your score:'+S+'/'+inttostr(N);
+  label3.caption:='Your score:'+S+'/'+inttostr(N);
 end;
 
 procedure TForm1.btn_startClick(Sender: TObject);
@@ -203,22 +224,27 @@ begin
        radiogroup1.visible:=true;
        fillradio(radiogroup1);
    end;
+   if n=1 then
+   begin
+       btn_result.visible:=true;
+       btn_next.visible:=false;
+   end;
 end;
 
 procedure TForm1.btn_nextClick(Sender: TObject);
 begin
-   if mass[i].typ='radio' then
-      rareadusanswear(radiogroup1);
-   if mass[i].typ='check' then
-      chreadusanswear(checkgroup1);
-   btn_prev.visible:=true;
-   if i=n-1 then
-   begin
-      btn_next.visible:=false;
-      Btn_result.visible:=true;
-   end;
-   inc(i);
-   label1.caption:=mass[i].question;
+     if mass[i].typ='radio' then
+        rareadusanswear(radiogroup1);
+     if mass[i].typ='check' then
+        chreadusanswear(checkgroup1);
+     btn_prev.visible:=true;
+     if (i=n-1)  then
+     begin
+        btn_next.visible:=false;
+        Btn_result.visible:=true;
+     end;
+     inc(i);
+     label1.caption:=mass[i].question;
    if mass[i].typ='check' then
    begin
        checkgroup1.visible:=true;

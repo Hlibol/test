@@ -1,11 +1,11 @@
 object Form1: TForm1
-  Left = 166
+  Left = 232
   Height = 863
-  Top = 66
+  Top = 49
   Width = 1641
   Caption = 'Test'
-  ClientHeight = 863
-  ClientWidth = 1641
+  ClientHeight = 0
+  ClientWidth = 0
   DesignTimePPI = 120
   Font.CharSet = RUSSIAN_CHARSET
   Font.Height = -26
@@ -119,5 +119,12 @@ object Form1: TForm1
     Caption = 'Result'
     TabOrder = 6
     Visible = False
+    OnClick = btn_resultClick
+  end
+  object Label3: TLabel
+    Left = 861
+    Height = 1
+    Top = 16
+    Width = 1
   end
 end
