@@ -1,5 +1,5 @@
 question 1
-radio
+check
 9
 abb
 sda
@@ -19,4 +19,29 @@ ads
 0
 1
 0
-
+question 2 
+radio
+7
+abyy
+sda
+asdy
+asdr
+asds
+asdf
+asdc
+1
+1
+1
+1
+1
+0
+0
+question 3 
+check
+3
+123
+\23
+12
+1
+1
+1

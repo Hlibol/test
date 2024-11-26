@@ -1,0 +1,47 @@
+question 4
+check
+9
+f
+j
+u
+y
+t
+re
+e
+r
+o
+1
+1
+1
+1
+1
+0
+0
+1
+0
+question 5 
+radio
+7
+n
+b
+b
+v
+c
+q
+ww
+1
+1
+1
+1
+1
+0
+0
+question 6 
+check
+3
+78
+123
+44
+1
+1
+1
