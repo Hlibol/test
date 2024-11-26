@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 283
+  Left = 232
   Height = 863
-  Top = 60
+  Top = 49
   Width = 1641
   Caption = 'Test'
   ClientHeight = 863
@@ -118,6 +118,14 @@ object Form1: TForm1
     Width = 351
     Caption = 'Result'
     TabOrder = 6
+    Visible = False
+    OnClick = btn_resultClick
+  end
+  object Label3: TLabel
+    Left = 861
+    Height = 1
+    Top = 16
+    Width = 1
     Visible = False
   end
 end

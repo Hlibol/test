@@ -29,9 +29,11 @@ type
     Image1: TImage;
     Label1: TLabel;
     Label2: TLabel;
+    Label3: TLabel;
     label_correct: TLabel;
     RadioGroup1: TRadioGroup;
     procedure btn_prevClick(Sender: TObject);
+    procedure btn_resultClick(Sender: TObject);
     procedure btn_startClick(Sender: TObject);
     procedure btn_nextClick(Sender: TObject);
     procedure CheckGroup1Click(Sender: TObject);
@@ -89,6 +91,11 @@ begin
   end;
 end;
 
+procedure calculateanswear(radiogroup1:TRadioGroup;checkgroup1:TCheckGroup);
+begin
+   for i:=
+end;
+
 procedure TForm1.CheckGroup1Click(Sender: TObject);
 begin
 
@@ -121,6 +128,17 @@ begin
        fillradio(radiogroup1);
    end;
 
+end;
+
+procedure TForm1.btn_resultClick(Sender: TObject);
+begin
+   if mass[i].typ='radio' then
+      rareadusanswear(radiogroup1);
+   if mass[i].typ='check' then
+      chreadusanswear(checkgroup1);
+   i:=N;
+  s:=calculateanswear(radiogroup1,checkgroup1);
+  labe3.caption:='Your score:'+S+'/'+inttostr(N);
 end;
 
 procedure TForm1.btn_startClick(Sender: TObject);
