@@ -37,6 +37,8 @@ type
     procedure btn_startClick(Sender: TObject);
     procedure btn_nextClick(Sender: TObject);
     procedure CheckGroup1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure Label2Click(Sender: TObject);
   private
 
   public
@@ -49,6 +51,7 @@ var
   mass:array[1..100] of Tquestion;
   i,j,N:longint;
   S:string;
+  check:boolean;
 
 implementation
 
@@ -64,6 +67,16 @@ begin
 end;
 
 
+procedure lbanswear(label2:Tlabel);
+var temp:string;
+begin
+     temp:='Correct answear: ';
+     for j:=0 to mass[i].amount-1 do
+       if mass[i].correct[j] then
+          temp:=temp+inttostr(j+1)+' ';
+     label2.caption:=temp;
+end;
+
 procedure checkset(checkgroup1:TCheckGroup);
 begin
   for j:=0 to mass[i].amount-1 do
@@ -74,7 +87,7 @@ procedure radioset(radiogroup1:TRadioGroup);
 begin
   for j:=0 to mass[i].amount-1 do
     if mass[i].usanswear[j] then
-       radiogroup1.Items.checked[j] := mass[i].usanswear[j];
+       radiogroup1.Itemindex := j;
 end;
 
 procedure chreadusanswear(checkgroup1:TCheckGroup);
@@ -152,6 +165,16 @@ begin
 
 end;
 
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.Label2Click(Sender: TObject);
+begin
+
+end;
+
 procedure TForm1.btn_prevClick(Sender: TObject);
 begin
     if mass[i].typ='radio' then
@@ -179,9 +202,9 @@ begin
        checkgroup1.visible:=false;
        fillradio(radiogroup1);
        radioset(radiogroup1);
-
    end;
-
+   if check then
+      lbanswear(label2);
 end;
 
 procedure TForm1.btn_resultClick(Sender: TObject);
@@ -194,6 +217,10 @@ begin
    i:=N;
    label3.caption:='Your score:'+S+'/'+inttostr(N);
    btn_result.enabled:=false;
+   radiogroup1.enabled:=false;
+   checkgroup1.enabled:=false;
+   check:=true;
+   lbanswear(label2);
 end;
 
 procedure TForm1.btn_startClick(Sender: TObject);
@@ -276,7 +303,8 @@ begin
        fillradio(radiogroup1);
        radioset(radiogroup1)
    end;
-
+   if check then
+      lbanswear(label2);
 end;
 
 end.

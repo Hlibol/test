@@ -1,10 +1,10 @@
 object Form1: TForm1
   Left = 232
-  Height = 690
+  Height = 701
   Top = 49
   Width = 1313
   Caption = 'Test'
-  ClientHeight = 690
+  ClientHeight = 701
   ClientWidth = 1313
   Font.CharSet = RUSSIAN_CHARSET
   Font.Height = -21
@@ -12,6 +12,7 @@ object Form1: TForm1
   Font.Pitch = fpVariable
   Font.Quality = fqDraft
   Font.Style = [fsBold]
+  OnCreate = FormCreate
   LCLVersion = '3.6.0.0'
   object RadioGroup1: TRadioGroup
     Left = 111
@@ -99,6 +100,7 @@ object Form1: TForm1
     Top = 664
     Width = 74
     Caption = 'Text file'
+    OnClick = Label2Click
   end
   object btn_next: TButton
     Left = 762
@@ -121,9 +123,9 @@ object Form1: TForm1
     OnClick = btn_resultClick
   end
   object Label3: TLabel
-    Left = 689
+    Left = 1031
     Height = 1
-    Top = 13
+    Top = 386
     Width = 1
   end
 end
