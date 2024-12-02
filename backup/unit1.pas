@@ -64,6 +64,18 @@ begin
 end;
 
 
+procedure checkset(checkgroup1:TCheckGroup);
+begin
+  for j:=0 to mass[i].amount-1 do
+    checkgroup1.Checked[j]:=mass[i].usanswear[j];
+end;
+
+procedure radioset(radiogroup1:TRadioGroup);
+begin
+  for j:=0 to mass[i].amount-1 do
+    if mass[i].usanswear[j] then
+       radiogroup1.Items.checked[j] := mass[i].usanswear[j];
+end;
 
 procedure chreadusanswear(checkgroup1:TCheckGroup);
 begin
@@ -79,7 +91,8 @@ begin
   begin
      mass[i].usanswear[j]:=false;
   end;
-  mass[i].usanswear[radiogroup1.ItemIndex]:=true;
+  if radiogroup1.ItemIndex <> -1 then
+     mass[i].usanswear[radiogroup1.ItemIndex]:=true;
 end;
 
 procedure fillradio(radiogroup1:TRadioGroup);
@@ -95,7 +108,7 @@ function radioanswear(radiogroup1:Tradiogroup):boolean;
 begin
      radioanswear:=false;
      for j:=0 to mass[i].amount-1 do
-        if mass[i].usanswear[j]=mass[i].correct[j] then
+        if (mass[i].usanswear[j]=mass[i].correct[j]) and (mass[i].usanswear[j]=true) then
            radioanswear:=true;
 end;
 
@@ -109,7 +122,7 @@ begin
      correctam:=0;
       for j:=0 to mass[i].amount-1 do
       begin
-          if mass[i].usanswear[j] = mass[i].correct[j]
+          if (mass[i].usanswear[j] = mass[i].correct[j]) and (mass[i].usanswear[j]=true)
           then inc(correctam);
           if mass[i].correct[j]
           then inc(testam);
@@ -127,11 +140,10 @@ begin
    for i:=1 to N do
    begin
         if mass[i].typ='check' then
-            if checkanswear(checkgroup1) then inc(sum)
-        else if mass[i].typ='radio' then
+            if checkanswear(checkgroup1) then inc(sum);
+        if mass[i].typ='radio' then
              if radioanswear(radiogroup1) then inc(sum);
      end;
-   end;
    calculateanswear:=sum;
 end;
 
@@ -159,12 +171,15 @@ begin
        checkgroup1.visible:=true;
        radiogroup1.visible:=false;
        fillcheck(checkgroup1);
+       checkset(checkgroup1);
    end;
    if mass[i].typ='radio' then
    begin
        radiogroup1.visible:=true;
        checkgroup1.visible:=false;
        fillradio(radiogroup1);
+       radioset(radiogroup1);
+
    end;
 
 end;
@@ -175,9 +190,10 @@ begin
       rareadusanswear(radiogroup1);
    if mass[i].typ='check' then
       chreadusanswear(checkgroup1);
-  s:=inttostr(calculateanswear(radiogroup1,checkgroup1));
-  i:=N;
-  label3.caption:='Your score:'+S+'/'+inttostr(N);
+   s:=inttostr(calculateanswear(radiogroup1,checkgroup1));
+   i:=N;
+   label3.caption:='Your score:'+S+'/'+inttostr(N);
+   btn_result.enabled:=false;
 end;
 
 procedure TForm1.btn_startClick(Sender: TObject);
@@ -251,12 +267,14 @@ begin
        checkgroup1.visible:=true;
        radiogroup1.visible:=false;
        fillcheck(checkgroup1);
+       checkset(checkgroup1);
    end;
    if mass[i].typ='radio' then
    begin
        radiogroup1.visible:=true;
        checkgroup1.visible:=false;
        fillradio(radiogroup1);
+       radioset(radiogroup1)
    end;
 
 end;

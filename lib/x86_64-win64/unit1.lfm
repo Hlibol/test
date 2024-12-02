@@ -1,10 +1,10 @@
 object Form1: TForm1
-  Left = 1111
-  Height = 696
-  Top = 163
+  Left = 232
+  Height = 690
+  Top = 49
   Width = 1313
   Caption = 'Test'
-  ClientHeight = 696
+  ClientHeight = 690
   ClientWidth = 1313
   Font.CharSet = RUSSIAN_CHARSET
   Font.Height = -21
@@ -63,33 +63,13 @@ object Form1: TForm1
     Visible = False
     OnClick = btn_prevClick
   end
-  object btn_next: TButton
-    Left = 720
-    Height = 102
-    Top = 504
-    Width = 281
-    Caption = 'Next'
-    TabOrder = 3
-    Visible = False
-    OnClick = btn_prevClick
-  end
-  object Btn_result: TButton
-    Left = 721
-    Height = 102
-    Top = 504
-    Width = 281
-    Caption = 'Result'
-    TabOrder = 4
-    Visible = False
-    OnClick = btn_prevClick
-  end
   object btn_start: TButton
     Left = 392
     Height = 97
     Top = 256
     Width = 319
     Caption = 'START'
-    TabOrder = 5
+    TabOrder = 3
     OnClick = btn_startClick
   end
   object Image1: TImage
@@ -110,7 +90,7 @@ object Form1: TForm1
     Height = 38
     Top = 624
     Width = 334
-    TabOrder = 6
+    TabOrder = 4
     Text = 'input.txt'
   end
   object Label2: TLabel
@@ -119,5 +99,31 @@ object Form1: TForm1
     Top = 664
     Width = 74
     Caption = 'Text file'
+  end
+  object btn_next: TButton
+    Left = 762
+    Height = 102
+    Top = 512
+    Width = 281
+    Caption = 'Next'
+    TabOrder = 5
+    Visible = False
+    OnClick = btn_nextClick
+  end
+  object btn_result: TButton
+    Left = 762
+    Height = 102
+    Top = 512
+    Width = 281
+    Caption = 'Result'
+    TabOrder = 6
+    Visible = False
+    OnClick = btn_resultClick
+  end
+  object Label3: TLabel
+    Left = 689
+    Height = 1
+    Top = 13
+    Width = 1
   end
 end
