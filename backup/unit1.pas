@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
-  Menus;
+  Menus, ExtDlgs;
 
 type
   TQuestion = record
@@ -34,7 +34,10 @@ type
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
+    MenuItem3: TMenuItem;
+    MenuItem4: TMenuItem;
     OpenDialog1: TOpenDialog;
+    OpenPictureDialog1: TOpenPictureDialog;
     RadioGroup1: TRadioGroup;
     procedure btn_prevClick(Sender: TObject);
     procedure btn_resultClick(Sender: TObject);
@@ -45,6 +48,7 @@ type
     procedure Label2Click(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
+    procedure MenuItem4Click(Sender: TObject);
   private
 
   public
@@ -222,6 +226,12 @@ begin
   opendialog1.execute
 end;
 
+procedure TForm1.MenuItem4Click(Sender: TObject);
+begin
+  openpicturedialog1.execute;
+  image1.picture.LoadFromFile();:=openpicturedialog1.FileName;
+end;
+
 procedure TForm1.btn_prevClick(Sender: TObject);
 begin
     if (mass[i].typ='radio') or ( mass[i].typ='radioph') then
@@ -302,7 +312,6 @@ begin
      inc(i);
    end;
    N:=i-1;
-   edit1.Visible:=false;
    btn_start.Visible:=false;
    label2.Visible:=false;
    randomq();
