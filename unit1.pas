@@ -235,7 +235,8 @@ begin
      a:=i;
      s:=inttostr(calculateanswear(radiogroup1,checkgroup1));
      i:=a;
-     writeln(fout,'Your score:'+S+'/'+inttostr(N));
+     writeln(fout,'Score:'+S+'/'+inttostr(N));
+     writeln(fout,'Your mark:'+inttostr(trunc(strtoint(s)/(n/12)))+'/12');
      closefile(fout);
 end;
 
