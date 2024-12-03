@@ -48,6 +48,7 @@ type
     procedure Label2Click(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
+    procedure MenuItem3Click(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
   private
 
@@ -59,7 +60,7 @@ var
   Form1: TForm1;
   fin,fout:Textfile;
   mass:array[1..100] of Tquestion;
-  i,j,N:longint;
+  i,j,N,q,a:longint;
   S:string;
   check:boolean;
 
@@ -224,6 +225,18 @@ end;
 procedure TForm1.MenuItem2Click(Sender: TObject);
 begin
   opendialog1.execute
+end;
+
+procedure TForm1.MenuItem3Click(Sender: TObject);
+begin
+     opendialog1.execute;
+     assignfile(fout,opendialog1.FileName);
+     rewrite(fout);
+     a:=i;
+     s:=inttostr(calculateanswear(radiogroup1,checkgroup1));
+     i:=a;
+     writeln(fout,'Your score:'+S+'/'+inttostr(N));
+     closefile(fout);
 end;
 
 procedure TForm1.MenuItem4Click(Sender: TObject);

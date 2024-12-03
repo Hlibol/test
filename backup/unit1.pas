@@ -48,6 +48,7 @@ type
     procedure Label2Click(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
+    procedure MenuItem3Click(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
   private
 
@@ -59,7 +60,7 @@ var
   Form1: TForm1;
   fin,fout:Textfile;
   mass:array[1..100] of Tquestion;
-  i,j,N:longint;
+  i,j,N,q,a:longint;
   S:string;
   check:boolean;
 
@@ -226,10 +227,22 @@ begin
   opendialog1.execute
 end;
 
+procedure TForm1.MenuItem3Click(Sender: TObject);
+begin
+     opendialog1.execute;
+     assignfile(fout,opendialog1.FileName);
+     rewrite(fout);
+     a:=i;
+     s:=inttostr(calculateanswear(radiogroup1,checkgroup1));
+     i:=a;
+     writeln(fout,'Your score:'+S+'/'+inttostr(N));
+     close(fout);
+end;
+
 procedure TForm1.MenuItem4Click(Sender: TObject);
 begin
   openpicturedialog1.execute;
-  image1.picture.LoadFromFile();:=openpicturedialog1.FileName;
+  image1.picture.LoadFromFile(openpicturedialog1.FileName);
 end;
 
 procedure TForm1.btn_prevClick(Sender: TObject);

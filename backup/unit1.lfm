@@ -1234,6 +1234,7 @@ object Form1: TForm1
       end
       object MenuItem3: TMenuItem
         Caption = 'save'
+        OnClick = MenuItem3Click
       end
       object MenuItem4: TMenuItem
         Caption = 'open image'
