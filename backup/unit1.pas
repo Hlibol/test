@@ -5,7 +5,8 @@ unit Unit1;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
+  Menus;
 
 type
   TQuestion = record
@@ -25,12 +26,15 @@ type
     btn_next: TButton;
     btn_result: TButton;
     CheckGroup1: TCheckGroup;
-    Edit1: TEdit;
     Image1: TImage;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     label_correct: TLabel;
+    MainMenu1: TMainMenu;
+    MenuItem1: TMenuItem;
+    MenuItem2: TMenuItem;
+    OpenDialog1: TOpenDialog;
     RadioGroup1: TRadioGroup;
     procedure btn_prevClick(Sender: TObject);
     procedure btn_resultClick(Sender: TObject);
@@ -39,6 +43,8 @@ type
     procedure CheckGroup1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Label2Click(Sender: TObject);
+    procedure MenuItem1Click(Sender: TObject);
+    procedure MenuItem2Click(Sender: TObject);
   private
 
   public
@@ -66,15 +72,46 @@ begin
     CheckGroup1.items.add(mass[i].answear[j]);
 end;
 
+procedure randomq();
+var ind1,ind2:longint;
+    temp:Tquestion;
+    tempb:boolean;
+    temps:string;
+begin
+  randomize();
+  for j:=1 to 20 do
+  begin
+     ind1:=1+trunc(random*(N));
+     ind2:=1+trunc(random*(N));
+     temp:=mass[ind1];
+     mass[ind1]:=mass[ind2];
+     mass[ind2]:=temp;
+  end;
+  for i:=1 to N do
+  begin
+     for j:=1 to 20 do
+     begin
+          ind1:=trunc(random*(mass[i].amount));
+          ind2:=trunc(random*(mass[i].amount));
+          temps:=mass[i].answear[ind1];
+          mass[i].answear[ind1]:=mass[i].answear[ind2];
+          mass[i].answear[ind2]:=temps;
+          tempb:=mass[i].correct[ind1];
+          mass[i].correct[ind1]:=mass[i].correct[ind2];
+          mass[i].correct[ind2]:=tempb;
+     end;
+  end;
+end;
 
 procedure lbanswear(label2:Tlabel);
 var temp:string;
 begin
-     temp:='Correct answear: ';
+     temp:='Correct answer: ';
      for j:=0 to mass[i].amount-1 do
        if mass[i].correct[j] then
           temp:=temp+inttostr(j+1)+' ';
      label2.caption:=temp;
+     label2.Visible:=true;
 end;
 
 procedure checkset(checkgroup1:TCheckGroup);
@@ -152,9 +189,9 @@ begin
      sum:=0;
    for i:=1 to N do
    begin
-        if mass[i].typ='check' then
+        if  ( mass[i].typ='checkph') or(mass[i].typ='check') then
             if checkanswear(checkgroup1) then inc(sum);
-        if mass[i].typ='radio' then
+        if (mass[i].typ='radio') or( mass[i].typ='radioph') then
              if radioanswear(radiogroup1) then inc(sum);
      end;
    calculateanswear:=sum;
@@ -175,28 +212,39 @@ begin
 
 end;
 
+procedure TForm1.MenuItem1Click(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.MenuItem2Click(Sender: TObject);
+begin
+  opendialog1.execute
+end;
+
 procedure TForm1.btn_prevClick(Sender: TObject);
 begin
-    if mass[i].typ='radio' then
+    if (mass[i].typ='radio') or ( mass[i].typ='radioph') then
       rareadusanswear(radiogroup1);
-   if mass[i].typ='check' then
+   if (mass[i].typ='check') or ( mass[i].typ='checkph') then
       chreadusanswear(checkgroup1);
    btn_next.visible:=true;
    Btn_result.visible:=false;
+   image1.visible:=false;
    if i=2 then
    begin
       btn_prev.visible:=false;
    end;
    dec(i);
    label1.caption:=mass[i].question;
-   if mass[i].typ='check' then
+   if  ( mass[i].typ='checkph') or (mass[i].typ='check') then
    begin
        checkgroup1.visible:=true;
        radiogroup1.visible:=false;
        fillcheck(checkgroup1);
        checkset(checkgroup1);
    end;
-   if mass[i].typ='radio' then
+   if (mass[i].typ='radio') or ( mass[i].typ='radioph') then
    begin
        radiogroup1.visible:=true;
        checkgroup1.visible:=false;
@@ -205,13 +253,15 @@ begin
    end;
    if check then
       lbanswear(label2);
+   if ( mass[i].typ='radioph') or ( mass[i].typ='checkph') then
+      image1.visible:=true;
 end;
 
 procedure TForm1.btn_resultClick(Sender: TObject);
 begin
-   if mass[i].typ='radio' then
+   if (mass[i].typ='radio') or ( mass[i].typ='radioph') then
       rareadusanswear(radiogroup1);
-   if mass[i].typ='check' then
+   if (mass[i].typ='check') or ( mass[i].typ='checkph') then
       chreadusanswear(checkgroup1);
    s:=inttostr(calculateanswear(radiogroup1,checkgroup1));
    i:=N;
@@ -225,7 +275,7 @@ end;
 
 procedure TForm1.btn_startClick(Sender: TObject);
 begin
-   assignfile(fin,edit1.Text);
+   assignfile(fin,opendialog1.filename);
    reset(fin);
    i:=1;
    while not(eof(fin)) do
@@ -255,15 +305,16 @@ begin
    edit1.Visible:=false;
    btn_start.Visible:=false;
    label2.Visible:=false;
+   randomq();
    i:=1;
    label1.caption:=mass[i].question;
    btn_next.visible:=true;
-   if mass[i].typ='check' then
+   if (mass[i].typ='check') or ( mass[i].typ='checkph') then
    begin
        checkgroup1.visible:=true;
        fillcheck(checkgroup1);
    end;
-   if mass[i].typ='radio' then
+   if ( mass[i].typ='radioph') or (mass[i].typ='radio') then
    begin
        radiogroup1.visible:=true;
        fillradio(radiogroup1);
@@ -273,13 +324,15 @@ begin
        btn_result.visible:=true;
        btn_next.visible:=false;
    end;
+   if ( mass[i].typ='radioph') or ( mass[i].typ='checkph') then
+      image1.visible:=true;
 end;
 
 procedure TForm1.btn_nextClick(Sender: TObject);
 begin
-     if mass[i].typ='radio' then
+     if (mass[i].typ='radio') or ( mass[i].typ='radioph') then
         rareadusanswear(radiogroup1);
-     if mass[i].typ='check' then
+     if (mass[i].typ='check') or ( mass[i].typ='checkph') then
         chreadusanswear(checkgroup1);
      btn_prev.visible:=true;
      if (i=n-1)  then
@@ -287,16 +340,17 @@ begin
         btn_next.visible:=false;
         Btn_result.visible:=true;
      end;
+     image1.Visible:=false;
      inc(i);
      label1.caption:=mass[i].question;
-   if mass[i].typ='check' then
+   if ( mass[i].typ='checkph') or (mass[i].typ='check') then
    begin
        checkgroup1.visible:=true;
        radiogroup1.visible:=false;
        fillcheck(checkgroup1);
        checkset(checkgroup1);
    end;
-   if mass[i].typ='radio' then
+   if (mass[i].typ='radio') or ( mass[i].typ='radioph') then
    begin
        radiogroup1.visible:=true;
        checkgroup1.visible:=false;
@@ -305,6 +359,8 @@ begin
    end;
    if check then
       lbanswear(label2);
+   if ( mass[i].typ='radioph') or ( mass[i].typ='checkph') then
+      image1.visible:=true;
 end;
 
 end.
