@@ -33,9 +33,23 @@ type
     label_correct: TLabel;
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
+    MenuItem10: TMenuItem;
+    MenuItem11: TMenuItem;
+    MenuItem12: TMenuItem;
+    MenuItem13: TMenuItem;
+    MenuItem14: TMenuItem;
+    MenuItem15: TMenuItem;
+    MenuItem16: TMenuItem;
+    MenuItem17: TMenuItem;
+    MenuItem18: TMenuItem;
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
+    MenuItem5: TMenuItem;
+    MenuItem6: TMenuItem;
+    MenuItem7: TMenuItem;
+    MenuItem8: TMenuItem;
+    MenuItem9: TMenuItem;
     OpenDialog1: TOpenDialog;
     OpenPictureDialog1: TOpenPictureDialog;
     RadioGroup1: TRadioGroup;
@@ -46,10 +60,23 @@ type
     procedure CheckGroup1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Label2Click(Sender: TObject);
+    procedure MenuItem10Click(Sender: TObject);
+    procedure MenuItem11Click(Sender: TObject);
+    procedure MenuItem12Click(Sender: TObject);
+    procedure MenuItem13Click(Sender: TObject);
+    procedure MenuItem14Click(Sender: TObject);
+    procedure MenuItem15Click(Sender: TObject);
+    procedure MenuItem16Click(Sender: TObject);
+    procedure MenuItem17Click(Sender: TObject);
+    procedure MenuItem18Click(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
     procedure MenuItem3Click(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
+    procedure MenuItem5Click(Sender: TObject);
+    procedure MenuItem7Click(Sender: TObject);
+    procedure MenuItem8Click(Sender: TObject);
+    procedure MenuItem9Click(Sender: TObject);
   private
 
   public
@@ -217,6 +244,52 @@ begin
 
 end;
 
+procedure TForm1.MenuItem10Click(Sender: TObject);
+begin
+  Form1.color:=clPurple;
+  Form1.Font.Color:=clMenu;
+end;
+
+procedure TForm1.MenuItem11Click(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.MenuItem12Click(Sender: TObject);
+begin
+  form1.Font.Size:=12;
+end;
+
+procedure TForm1.MenuItem13Click(Sender: TObject);
+begin
+  form1.Font.Size:=14;
+end;
+
+procedure TForm1.MenuItem14Click(Sender: TObject);
+begin
+  form1.Font.Size:=16;
+end;
+
+procedure TForm1.MenuItem15Click(Sender: TObject);
+begin
+  form1.Font.Size:=18;
+end;
+
+procedure TForm1.MenuItem16Click(Sender: TObject);
+begin
+  form1.Font.Size:=20;
+end;
+
+procedure TForm1.MenuItem17Click(Sender: TObject);
+begin
+  form1.Font.Size:=22;
+end;
+
+procedure TForm1.MenuItem18Click(Sender: TObject);
+begin
+  form1.Font.Size:=24;
+end;
+
 procedure TForm1.MenuItem1Click(Sender: TObject);
 begin
 
@@ -224,7 +297,8 @@ end;
 
 procedure TForm1.MenuItem2Click(Sender: TObject);
 begin
-  opendialog1.execute
+  opendialog1.execute;
+  btn_start.visible:=true;
 end;
 
 procedure TForm1.MenuItem3Click(Sender: TObject);
@@ -244,6 +318,29 @@ procedure TForm1.MenuItem4Click(Sender: TObject);
 begin
   openpicturedialog1.execute;
   image1.picture.LoadFromFile(openpicturedialog1.FileName);
+end;
+
+procedure TForm1.MenuItem5Click(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.MenuItem7Click(Sender: TObject);
+begin
+  Form1.color:=clMenu;
+  Form1.Font.Color:=clBlack;
+end;
+
+procedure TForm1.MenuItem8Click(Sender: TObject);
+begin
+  Form1.color:=clGray;
+  Form1.Font.Color:=clMenu;
+end;
+
+procedure TForm1.MenuItem9Click(Sender: TObject);
+begin
+  Form1.color:=clRed;
+  Form1.Font.Color:=clMenu;
 end;
 
 procedure TForm1.btn_prevClick(Sender: TObject);
